@@ -1,6 +1,18 @@
 @import "tailwindcss";
 
-button {
+@font-face {
+  font-family: heading;
+  src: url("/fonts/heading.otf");
+}
+@font-face {
+  font-family: names;
+  src: url("/fonts/names.ttf");
+}
+@theme{
+  --font-head:heading;
+  --font-name:names
+}
+.startButton {
   border-radius: 8px;
   border: 1px  solid white;
   padding: 0.6em 1.2em;
@@ -12,11 +24,11 @@ button {
   color: white;
   margin-left:45%;
 }
-button:hover {
+.startButton:hover {
   border-color: #646cff;
 }
-button:focus,
-button:focus-visible {
+.startButton:focus,
+.startButton:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
@@ -28,7 +40,7 @@ button:focus-visible {
   a:hover {
     color: #747bff;
   }
-  button {
+  .startButton {
     background-color: #f9f9f9;
   }
 }
@@ -40,6 +52,21 @@ body
 
 header img
 {
-  height: 20%;
   width: 10%;
+}
+
+table
+{
+  border: white solid;
+}
+
+th
+{
+  color: white;
+  padding: 10px;
+}
+
+tr
+{
+  color: white;
 }

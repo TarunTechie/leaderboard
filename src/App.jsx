@@ -1,16 +1,19 @@
-import { useState } from 'react'
 import './index.css'
 import './App.css'
 import Header from './components/Header'
-
+import { useNavigate } from 'react-router-dom'
 function App() {
-  const [count, setCount] = useState(0)
 
+  const nav=useNavigate()
+  function openScoreBoard()
+  {
+    nav('/scoreboard')
+  }
   return (
     <div>
-      <Header />
+      <Header/>
       <div className='h-screen content-center'>
-      <button>Start Race</button>
+      <button onClick={openScoreBoard}>Start Race</button>
       </div>
     </div>
   )
