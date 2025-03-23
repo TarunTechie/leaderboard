@@ -12,8 +12,8 @@ function App() {
   return (
     <div>
       <Header/>
-      <div className='h-screen content-center'>
-      <button onClick={openScoreBoard}>Start Race</button>
+      <div className='flex h-screen w-screen content-center justify-center'>
+      <button onClick={openScoreBoard} className='bg-white p-10 m-auto w-fit rounded-2xl border-6 border-dotted'>Start Race</button>
       </div>
     </div>
   )

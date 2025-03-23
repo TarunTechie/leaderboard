@@ -8,9 +8,14 @@
   font-family: names;
   src: url("/fonts/names.ttf");
 }
+@font-face {
+  font-family: time;
+  src: url("/fonts/time.otf");
+}
 @theme{
   --font-head:heading;
-  --font-name:names
+  --font-name:names;
+  --font-time:time;
 }
 .startButton {
   border-radius: 8px;
