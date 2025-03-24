@@ -31,14 +31,16 @@ export default function ScoreBoard()
     useEffect(() => {
         setTeams(teams.sort((a,b) => a.time-b.time))
         setTeams(teams.sort((a,b) => b.lap-a.lap))
-    },[teams])
+    }, [teams])
+    const hours=Math.floor(Math.floor(time / 3600000))
     const mins = Math.floor((time % 3600000) / 60000)
     const seconds=Math.floor((time % 60000) / 1000)
     return (
         <div>
         <header className="bg-white flex justify-between p-4 items-center">
                 <img src="./logos/efx.png" />
-                <span className="flex text-6xl font-time items-baseline w-1/5 gap-4">
+                <span className="flex text-6xl font-time items-baseline w-1/4 gap-4">
+                    <h1 >{hours<10?"0"+hours:hours}:</h1>
                     <h1 >{mins<10?"0"+mins:mins}:</h1>
                     <h1 >{seconds<10?"0"+seconds:seconds}.</h1>
                     <h1 className="text-4xl">{Math.floor((time % 1000) )}</h1>
@@ -63,6 +65,7 @@ export default function ScoreBoard()
                                 <td>{data.lap}</td>
                                 <td>
                                 <span className="flex justify-center">
+                                    <h1>{Math.floor(Math.floor(time / 3600000))}:</h1>
                                     <h1>{Math.floor((data.time % 3600000) / 60000)}:</h1>
                                     <h1>{Math.floor((data.time % 60000) / 1000)}.</h1>
                                     <h1>{Math.floor((data.time % 1000) )}</h1>
