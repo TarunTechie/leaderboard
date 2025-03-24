@@ -65,7 +65,7 @@ export default function ScoreBoard()
                                 <td>{data.lap}</td>
                                 <td>
                                 <span className="flex justify-center">
-                                    <h1>{Math.floor(Math.floor(time / 3600000))}:</h1>
+                                    <h1>{Math.floor(Math.floor(data.time / 3600000))}:</h1>
                                     <h1>{Math.floor((data.time % 3600000) / 60000)}:</h1>
                                     <h1>{Math.floor((data.time % 60000) / 1000)}.</h1>
                                     <h1>{Math.floor((data.time % 1000) )}</h1>
