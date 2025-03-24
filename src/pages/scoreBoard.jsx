@@ -24,7 +24,7 @@ export default function ScoreBoard()
         }  
         interval=setInterval(() => {
             setTime(Date.now()-startTime)
-        }, 100)
+        }, 10)
         return()=>clearInterval(interval)
     }, [time])
 
@@ -37,15 +37,16 @@ export default function ScoreBoard()
     const seconds=Math.floor((time % 60000) / 1000)
     return (
         <div>
-        <header className="bg-white flex justify-between p-4 items-center">
-                <img src="./logos/efx.png" />
-                <span className="flex text-6xl font-time items-baseline w-1/4 gap-4">
+        <header className="bg-white flex p-2 items-center justify-center">
+                <img src="./logos/efx.png"/>
+                <img src="./logos/asme.png"/>
+                <span className="flex text-6xl font-time items-baseline gap-4 mx-auto w-1/3">
                     <h1 >{hours<10?"0"+hours:hours}:</h1>
                     <h1 >{mins<10?"0"+mins:mins}:</h1>
                     <h1 >{seconds<10?"0"+seconds:seconds}.</h1>
                     <h1 className="text-4xl">{Math.floor((time % 1000) )}</h1>
                 </span>
-                <img src="./logos/reva.png"/>
+                <img src="./logos/reva.png" className="h-12"/>
         </header>
             <div>
                 <table className="border-separate border border-white w-screen h-[85vh]">
@@ -64,11 +65,11 @@ export default function ScoreBoard()
                                 <td><button value={data.name} onClick={setStats}>{data.name.toUpperCase()}</button></td>
                                 <td>{data.lap}</td>
                                 <td>
-                                <span className="flex justify-center">
+                                <span className="flex justify-center items-baseline">
                                     <h1>{Math.floor(Math.floor(data.time / 3600000))}:</h1>
                                     <h1>{Math.floor((data.time % 3600000) / 60000)}:</h1>
                                     <h1>{Math.floor((data.time % 60000) / 1000)}.</h1>
-                                    <h1>{Math.floor((data.time % 1000) )}</h1>
+                                    <h3 className="text-sm">{Math.floor((data.time % 1000) )}</h3>
                                 </span>
                                 </td>
                             </tr>))}
