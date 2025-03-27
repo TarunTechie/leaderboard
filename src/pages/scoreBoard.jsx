@@ -41,11 +41,12 @@ export default function ScoreBoard()
         setTeams(teams.sort((a,b) => b.lap-a.lap))
     }, [teams])
 
+    let timeoutRef=null
     useEffect(() => {
-        let timeoutRef;
         const handleMouse = () => {
             setVisible("customCursor")
-            timeoutRef=setTimeout(()=>setVisible("cursor-none"),2000)
+            clearTimeout(timeoutRef)
+            timeoutRef=setTimeout(()=>setVisible("cursor-none"),3000)
         }
         window.addEventListener("mousemove", handleMouse) 
         return () => {
