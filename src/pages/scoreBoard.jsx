@@ -4,6 +4,7 @@ export default function ScoreBoard()
 {
     const [time, setTime] = useState(0)
     const [teams, setTeams] = useState(teamNames)
+    const [visible, setVisible] = useState("cursor-none")
     function setStats(teamName,preTime)
     {
         localStorage.setItem("updatedTeam",JSON.stringify({"name":teamName,"time":time,"prevTime":preTime}))
@@ -39,11 +40,24 @@ export default function ScoreBoard()
         setTeams(teams.sort((a,b) => a.time-b.time))
         setTeams(teams.sort((a,b) => b.lap-a.lap))
     }, [teams])
+
+    useEffect(() => {
+        let timeoutRef;
+        const handleMouse = () => {
+            setVisible("customCursor")
+            timeoutRef=setTimeout(()=>setVisible("cursor-none"),2000)
+        }
+        window.addEventListener("mousemove", handleMouse) 
+        return () => {
+            window.removeEventListener("mousemove", handleMouse)
+            clearTimeout(timeoutRef)
+        }
+    },[])
     const hours=Math.floor(Math.floor(time / 3600000))
     const mins = Math.floor((time % 3600000) / 60000)
     const seconds=Math.floor((time % 60000) / 1000)
     return (
-        <div className="customCursor">
+        <div className={visible}>
         <header className="bg-white flex p-2 items-center justify-center">
                 <img src="./logos/efx.png"/>
                 <img src="./logos/asme.png"/>
@@ -69,8 +83,8 @@ export default function ScoreBoard()
                         {teams.map((data,index) => (
                             <tr className="text-center font-name">
                                 <td>{index+1}</td>
-                                <td><button style={{width:"100%"}} className="customCursor" id={data.name} onClick={()=>{setStats(data.name,data.time)}}>{data.name.toUpperCase()}</button></td>
-                                <td><button style={{width:"100%"}} className="customCursor" value={data.name} onClick={updateStats}>{data.lap}</button></td>
+                                <td><button style={{width:"100%"}} className={visible} id={data.name} onClick={()=>{setStats(data.name,data.time)}}>{data.name.toUpperCase()}</button></td>
+                                <td><button style={{width:"100%"}} className={visible} value={data.name} onClick={updateStats}>{data.lap}</button></td>
                                 <td>
                                 <span className="flex justify-center items-baseline">
                                     <h1>{Math.floor(Math.floor(data.time / 3600000))}:</h1>
