@@ -1,0 +1,15 @@
+@tailwind utilities;
+
+th
+{
+    @apply border-2 border-[#000];
+}
+
+tbody tr:nth-child(odd)
+{
+    background-color: #1f1e1e;
+}
+tbody tr:nth-child(even)
+{
+    background-color: #131313;
+}

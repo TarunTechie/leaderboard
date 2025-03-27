@@ -49,16 +49,16 @@ export default function ScoreBoard()
                 <img src="./logos/reva.png" className="h-12"/>
         </header>
             <div>
-                <table className="border-separate border border-white w-screen h-[85vh]">
-                <thead className="text-2xl bg-gray-500 font-head">
-                <tr>
+                <table className=" w-[100vw] h-[84vh]">
+                <thead className="text-2xl bg-[#ff5912] font-head ">
+                <tr> 
                 <th>POSTION</th>
                 <th>TEAM</th>
                 <th>LAP</th>
                 <th>TIME</th>            
                 </tr>
                 </thead>
-                <tbody className="text-xl">
+                <tbody className="text-xl bg-black">
                         {teams.map((data,index) => (
                             <tr className="text-center font-name">
                                 <td>{index+1}</td>
