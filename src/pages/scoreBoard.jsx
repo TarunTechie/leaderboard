@@ -6,15 +6,28 @@ export default function ScoreBoard()
     const [startTime, setStartTime] = useState(0)
     const [time, setTime] = useState(0)
     const [teams, setTeams] = useState(teamNames)
-    function setStats(event)
+    function setStats(teamName,preTime)
     {
-        let teamName=event.target.value
+        localStorage.setItem("updatedTeam",JSON.stringify({"name":teamName,"time":time,"prevTime":preTime}))
         setTeams((teams) => (
-            teams.map((team)=>team.name===teamName?{...team,lap:team.lap+1}:team)
+            teams.map((team)=>team.name===teamName?{...team,lap:team.lap+1,time:time}:team)
         ))
+    }
+
+    function updateStats(event)
+    {
+        let teamName = event.target.value
+        let updatedTeam = JSON.parse(localStorage.getItem('updatedTeam'))
+        console.log(updatedTeam)
         setTeams((teams) => (
-            teams.map((team)=>team.name===teamName?{...team,time:time}:team)
+            teams.map((team) => team.name === updatedTeam.name ? { ...team, lap: team.lap - 1 ,time:updatedTeam.prevTime} : team)
         ))
+        if (updatedTeam.name !== teamName)
+        {
+            setTeams((teams) => (
+                teams.map((team)=>team.name===teamName?{...team,lap:team.lap+1,time:updatedTeam.time}:team)
+            ))
+        }
     }
     useEffect(() => {
         let interval
@@ -62,8 +75,8 @@ export default function ScoreBoard()
                         {teams.map((data,index) => (
                             <tr className="text-center font-name">
                                 <td>{index+1}</td>
-                                <td><button value={data.name} onClick={setStats}>{data.name.toUpperCase()}</button></td>
-                                <td>{data.lap}</td>
+                                <td><button id={data.name} onClick={()=>{setStats(data.name,data.time)}}>{data.name.toUpperCase()}</button></td>
+                                <td><button value={data.name} onClick={updateStats}>{data.lap}</button></td>
                                 <td>
                                 <span className="flex justify-center items-baseline">
                                     <h1>{Math.floor(Math.floor(data.time / 3600000))}:</h1>
