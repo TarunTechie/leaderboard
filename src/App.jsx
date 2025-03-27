@@ -10,10 +10,10 @@ function App() {
     nav('/scoreboard')
   }
   return (
-    <div>
+    <div className='customCursor bg-[url(/images/home.jpg)] w-screen h-screen bg-re'>
       <Header/>
-      <div className='flex h-screen w-screen content-center justify-center'>
-      <button onClick={openScoreBoard} className='bg-white p-10 m-auto w-fit rounded-2xl border-6 border-dotted'>Start Race</button>
+      <div className='flex h-[84vh] content-center justify-center'>
+      <button onClick={openScoreBoard} className='bg-white px-10 m-auto w-fit py-4 rounded-2xl border-4 border-dashed'>Start Race 🏁</button>
       </div>
     </div>
   )

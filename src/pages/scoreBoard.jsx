@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import Header from "../components/Header";
 import  {teamNames} from "../constants/teams";
 export default function ScoreBoard()
 {
-    const [startTime, setStartTime] = useState(0)
     const [time, setTime] = useState(0)
     const [teams, setTeams] = useState(teamNames)
     function setStats(teamName,preTime)
@@ -20,7 +18,7 @@ export default function ScoreBoard()
         let updatedTeam = JSON.parse(localStorage.getItem('updatedTeam'))
         console.log(updatedTeam)
         setTeams((teams) => (
-            teams.map((team) => team.name === updatedTeam.name ? { ...team, lap: team.lap - 1 ,time:updatedTeam.prevTime} : team)
+            teams.map((team) => team.name === updatedTeam.name ? { ...team, lap: team.lap==0? 0: team.lap - 1 ,time:updatedTeam.prevTime} : team)
         ))
         if (updatedTeam.name !== teamName)
         {
@@ -30,16 +28,12 @@ export default function ScoreBoard()
         }
     }
     useEffect(() => {
-        let interval
-        if (startTime === 0)
-        {
-            setStartTime(Date.now()-startTime)
-        }  
+        let interval  
         interval=setInterval(() => {
-            setTime(Date.now()-startTime)
+            setTime((time)=>time+10)
         }, 10)
         return()=>clearInterval(interval)
-    }, [time])
+    }, [])
 
     useEffect(() => {
         setTeams(teams.sort((a,b) => a.time-b.time))
@@ -49,7 +43,7 @@ export default function ScoreBoard()
     const mins = Math.floor((time % 3600000) / 60000)
     const seconds=Math.floor((time % 60000) / 1000)
     return (
-        <div>
+        <div className="customCursor">
         <header className="bg-white flex p-2 items-center justify-center">
                 <img src="./logos/efx.png"/>
                 <img src="./logos/asme.png"/>
@@ -75,8 +69,8 @@ export default function ScoreBoard()
                         {teams.map((data,index) => (
                             <tr className="text-center font-name">
                                 <td>{index+1}</td>
-                                <td><button id={data.name} onClick={()=>{setStats(data.name,data.time)}}>{data.name.toUpperCase()}</button></td>
-                                <td><button value={data.name} onClick={updateStats}>{data.lap}</button></td>
+                                <td><button style={{width:"100%"}} className="customCursor" id={data.name} onClick={()=>{setStats(data.name,data.time)}}>{data.name.toUpperCase()}</button></td>
+                                <td><button style={{width:"100%"}} className="customCursor" value={data.name} onClick={updateStats}>{data.lap}</button></td>
                                 <td>
                                 <span className="flex justify-center items-baseline">
                                     <h1>{Math.floor(Math.floor(data.time / 3600000))}:</h1>

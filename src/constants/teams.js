@@ -20,7 +20,7 @@ export let teamNames=[
       "time": 0.0
     },
     {
-      "name": "VALCAN",
+      "name": "VULCAN",
       "lap": 0,
       "time": 0.0
     },
