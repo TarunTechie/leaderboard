@@ -4,6 +4,7 @@ import './index.css'
 import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ScoreBoard from "./pages/scoreBoard.jsx"
+import DragRace from "./pages/dragRace.jsx"
 const router = createBrowserRouter([
   {
     path: "/",
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
     path: "/scoreboard",
     element:<ScoreBoard/>
   },
+  {
+    path: "/drag",
+    element:<DragRace/>
+  }
 ])
 
 createRoot(document.getElementById('root')).render(
